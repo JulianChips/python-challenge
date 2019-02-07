@@ -12,7 +12,7 @@ budget_csv = "../Instructions/PyBank/Resources/budget_data.csv"
 
 #define variables
 monthCount = 0
-sum = 0
+total = 0
 previous = 0
 current = 0
 difference = []
@@ -23,7 +23,7 @@ with open(budget_csv, "r") as csvfile:
     csvreader = csv.DictReader(csvfile)
     for row in csvreader:
         current = int(row.get("Profit/Losses"))
-        sum += current
+        total += current
         if(difference):     
             if((current-previous) > max(difference)):
                 greatestIncrease = str(row.get("Date"))
@@ -38,16 +38,18 @@ with open(budget_csv, "r") as csvfile:
 #Write the results to a file then print the file out.
 finances = "../Instructions/PyBank/Resources/finances.txt"
 avgchange = sum(difference)/(monthCount-1)
-with open(finances ,"w+") as file:
-    file.write("Financial Analysis\n")
-    file.write('---------------------\n')
-    file.write("Total Months: "+str(monthCount))
-    file.write("Total: "+str(sum))
-    file.write("Average Change: "+str(avgchange))
-    file.write("Greatest Increase in Profits: "+ greatestIncrease +" "+ str(max(difference)))
-    file.write("Greatest Decrease in Profits: "+ greatestDecrease +" "+ str(min(difference)))
 
-    print(file.read())
+output = (f"Financial Analysis\n"
+        f"-----------------------\n"
+        f"Total Months: {monthCount}\n"
+        f"Total: {total}\n"
+        f"Average Change: {avgchange}\n"
+        f"Greatest Increase in Profits: {greatestIncrease} {max(difference)}\n"
+        f"Greatest Decrease in Profits: {greatestDecrease} {max(difference)}\n"
+        )
+print(output)
+with open(finances ,"w+") as file:
+    file.write(output)
 
 
 
