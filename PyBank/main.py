@@ -5,7 +5,7 @@ import sys
 os.chdir(os.path.dirname(sys.argv[0]))
 
 #csv relative path
-budget_csv = "../Instructions/PyBank/Resources/budget_data.csv"
+budget_csv = "../Files/PyBank/budget_data.csv"
 
 #checks current working directory
 #print(os.getcwd())
@@ -36,7 +36,7 @@ with open(budget_csv, "r") as csvfile:
         monthCount += 1
         previous = current
 #Write the results to a file then print the file out.
-finances = "../Instructions/PyBank/Resources/finances.txt"
+finances = "../Files/PyBank/finances.txt"
 avgchange = sum(difference)/(monthCount-1)
 
 output = (f"Financial Analysis\n"
@@ -45,7 +45,7 @@ output = (f"Financial Analysis\n"
         f"Total: {total}\n"
         f"Average Change: {avgchange}\n"
         f"Greatest Increase in Profits: {greatestIncrease} {max(difference)}\n"
-        f"Greatest Decrease in Profits: {greatestDecrease} {max(difference)}\n"
+        f"Greatest Decrease in Profits: {greatestDecrease} {min(difference)}\n"
         )
 print(output)
 with open(finances ,"w+") as file:

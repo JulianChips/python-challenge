@@ -5,7 +5,7 @@ import sys
 os.chdir(os.path.dirname(sys.argv[0]))
 
 #csv relative path
-election_csv = "../Instructions/PyPoll/Resources/election_data.csv"
+election_csv = "../Files/PyPoll/election_data.csv"
 
 #define variables
 voting = {}
@@ -45,7 +45,7 @@ output = output + (f"--------------------------\n"
     f"--------------------------\n"
 )
 #write to a file and print
-resultFile = "../Instructions/PyPoll/Resources/results.txt"
+resultFile = "../Files/PyPoll/results.txt"
 with open(resultFile,"w") as file:
     file.write(output)
 
